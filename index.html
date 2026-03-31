@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bay Area Saunas | Custom-Built Saunas for the Bay Area</title>
+<meta name="description" content="Handcrafted custom saunas built to Finnish standards for Bay Area homes. Veteran-owned. Built to last generations.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #1a1714;
+    --warm-black: #0f0d0b;
+    --cedar: #b5723c;
+    --cedar-light: #d4945a;
+    --ember: #e8632b;
+    --smoke: #a39888;
+    --fog: #d4cdc2;
+    --cream: #f0ebe3;
+    --stone: #2a2520;
+    --gold: #c8a55e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--warm-black);
+    color: var(--fog);
+    overflow-x: hidden;
+  }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(15,13,11,0.95), transparent);
+    transition: background 0.4s;
+  }
+
+  nav.scrolled {
+    background: rgba(15,13,11,0.97);
+    backdrop-filter: blur(10px);
+    padding: 1rem 3rem;
+  }
+
+  .nav-usmc {
+    height: 32px;
+    width: auto;
+    margin-right: 0.75rem;
+    vertical-align: middle;
+    opacity: 0.9;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cream);
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+
+  .nav-logo span { color: var(--cedar-light); }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--smoke);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--cream); }
+
+  .nav-toggle { display: none; cursor: pointer; }
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--cream);
+    margin: 5px 0;
+    transition: 0.3s;
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8rem 3rem 6rem;
+    position: relative;
+    background:
+      linear-gradient(to bottom, rgba(15,13,11,0.4) 0%, rgba(15,13,11,0.2) 30%, rgba(15,13,11,0.88) 100%),
+      url('SaunaLifeG4wHarviaM3.webp') center/cover no-repeat;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(181,114,60,0.02) 2px,
+        rgba(181,114,60,0.02) 4px
+      );
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--cedar-light);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.05;
+    max-width: 900px;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--cedar-light);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--smoke);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 3rem;
+    padding: 1rem 2.5rem;
+    background: var(--cedar);
+    color: var(--cream);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+
+  .hero-cta:hover {
+    background: var(--cedar-light);
+    transform: translateY(-2px);
+  }
+
+  .hero-cta svg { width: 16px; height: 16px; }
+
+  /* ============ DIVIDER ============ */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 3rem;
+    margin: 4rem 0;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--stone), transparent);
+  }
+
+  .divider span {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--smoke);
+  }
+
+  /* ============ PHILOSOPHY ============ */
+  .philosophy {
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .philosophy-text h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 2rem;
+  }
+
+  .philosophy-text p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--smoke);
+    margin-bottom: 1.5rem;
+  }
+
+  .philosophy-visual {
+    position: relative;
+    height: 500px;
+    background: var(--stone);
+    border: 1px solid rgba(181,114,60,0.15);
+    overflow: hidden;
+  }
+
+  .philosophy-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .philosophy-visual::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(181,114,60,0.1);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* ============ FEATURES ============ */
+  .features {
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .features-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .features-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--cream);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .feature-card {
+    padding: 2.5rem;
+    background: linear-gradient(135deg, rgba(42,37,32,0.8), rgba(26,23,20,0.9));
+    border: 1px solid rgba(181,114,60,0.1);
+    transition: border-color 0.4s, transform 0.4s;
+  }
+
+  .feature-card:hover {
+    border-color: rgba(181,114,60,0.3);
+    transform: translateY(-4px);
+  }
+
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1.5rem;
+    color: var(--cedar-light);
+  }
+
+  .feature-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-card p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--smoke);
+  }
+
+  .partner-logo {
+    height: 28px;
+    width: auto;
+    margin-top: 1.25rem;
+    opacity: 0.5;
+    filter: brightness(1.5);
+    transition: opacity 0.3s;
+  }
+
+  .partner-logo:hover { opacity: 0.8; }
+
+  /* ============ BLUEPRINT ============ */
+  .blueprint {
+    padding: 6rem 1.5rem;
+    background: linear-gradient(to bottom, var(--warm-black), rgba(26,23,20,0.95), var(--warm-black));
+  }
+
+  .blueprint-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .blueprint-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .blueprint-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+
+  .blueprint-header p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--smoke);
+  }
+
+  .blueprint-diagram {
+    background: var(--warm-black);
+    border: 1px solid rgba(181,114,60,0.12);
+    padding: 2rem 1rem;
+    overflow: hidden;
+  }
+
+  /* ============ MODELS ============ */
+  .models {
+    padding: 6rem 3rem;
+    background: linear-gradient(to bottom, var(--warm-black), var(--stone), var(--warm-black));
+  }
+
+  .models-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .models-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .models-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .models-header p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--smoke);
+  }
+
+  .models-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .model-card {
+    background: rgba(15,13,11,0.6);
+    border: 1px solid rgba(181,114,60,0.12);
+    padding: 2.5rem;
+    position: relative;
+    transition: border-color 0.4s;
+  }
+
+  .model-card:hover { border-color: rgba(181,114,60,0.35); }
+
+  .model-card.featured {
+    border-color: var(--cedar);
+    background: rgba(181,114,60,0.05);
+  }
+
+  .model-tag {
+    position: absolute;
+    top: -1px;
+    right: 2rem;
+    background: var(--cedar);
+    color: var(--cream);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+  }
+
+  .model-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .model-card .model-size {
+    font-size: 0.8rem;
+    color: var(--cedar-light);
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+  }
+
+  .model-card ul {
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+
+  .model-card li {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--smoke);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(181,114,60,0.06);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .model-card li::before {
+    content: '—';
+    color: var(--cedar-light);
+    font-weight: 600;
+  }
+
+  .model-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--cream);
+  }
+
+  .model-price span {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--smoke);
+    display: block;
+    margin-top: 0.25rem;
+  }
+
+  /* ============ PROCESS ============ */
+  .process {
+    padding: 6rem 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .process h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--cream);
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    position: relative;
+  }
+
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--cedar), transparent);
+  }
+
+  .step {
+    text-align: center;
+  }
+
+  .step-num {
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--cedar);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cedar-light);
+    background: var(--warm-black);
+    position: relative;
+    z-index: 1;
+  }
+
+  .step h4 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+
+  .step p {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--smoke);
+  }
+
+  /* ============ VETERAN ============ */
+  .veteran {
+    padding: 5rem 3rem;
+    background: var(--stone);
+    text-align: center;
+  }
+
+  .veteran-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .veteran-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .vet-logo {
+    height: 80px;
+    width: auto;
+    opacity: 0.85;
+    filter: grayscale(20%);
+    transition: opacity 0.3s;
+  }
+
+  .vet-logo:hover { opacity: 1; }
+
+  .veteran-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cedar-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .veteran h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .veteran p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--smoke);
+  }
+
+  /* ============ CONTACT ============ */
+  .contact {
+    padding: 6rem 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .contact h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .contact p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--smoke);
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+
+  .contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-method {
+    text-align: center;
+  }
+
+  .contact-method h4 {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cedar-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-method a, .contact-method span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--cream);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .contact-method a:hover { color: var(--cedar-light); }
+
+  /* ============ FOOTER ============ */
+  footer {
+    padding: 3rem;
+    border-top: 1px solid rgba(181,114,60,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--smoke);
+  }
+
+  .footer-brand span { color: var(--cedar-light); }
+
+  .footer-info {
+    font-size: 0.75rem;
+    color: rgba(163,152,136,0.5);
+    letter-spacing: 1px;
+  }
+
+  .footer-info a {
+    color: rgba(163,152,136,0.5);
+    text-decoration: none;
+  }
+
+  /* ============ ANIMATIONS ============ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(15,13,11,0.97);
+      padding: 2rem 1.5rem;
+      gap: 1.5rem;
+    }
+    .nav-toggle { display: block; }
+    .hero { padding: 6rem 1.5rem 4rem; }
+    .hero h1 { font-size: 2.8rem; }
+    .philosophy { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
+    .philosophy-visual { height: 300px; }
+    .features { padding: 4rem 1.5rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .models { padding: 4rem 1.5rem; }
+    .models-grid { grid-template-columns: 1fr; }
+    .process { padding: 4rem 1.5rem; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .contact { padding: 4rem 1.5rem; }
+    .contact-methods { flex-direction: column; gap: 2rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+    .divider { padding: 0 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo"><img src="usmc-logo.png" alt="USMC" class="nav-usmc">Bay Area <span>Saunas</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#philosophy">About</a></li>
+    <li><a href="#features">Craftsmanship</a></li>
+    <li><a href="#models">Models</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-badge">Veteran-Owned &bull; Handcrafted in Northern California</div>
+  <h1>Built for <em>generations,</em> not seasons</h1>
+  <p class="hero-sub">Custom wood-fired saunas built to authentic Finnish standards. Designed for Bay Area homes. Crafted by hand. Made to last.</p>
+  <a href="#contact" class="hero-cta">
+    Start Your Build
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</section>
+
+<div class="divider"><span>&bull;&bull;&bull;</span></div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <div class="philosophy-text reveal">
+    <h2>No shortcuts. No compromises. No particle board.</h2>
+    <p>Every sauna we build follows time-tested Finnish construction principles — proper insulation, correct vapor barriers, authentic wood-fired heat, and real löyly. The kind of sauna that makes you forget the infrared box you almost bought online.</p>
+    <p>We use select-grade lumber, Rockwool insulation, and wood-burning stoves that produce the deep, enveloping heat that a real sauna demands. Each build is engineered to perform for decades, not just pass inspection.</p>
+    <p>This is not a kit. This is not flat-pack. This is a structure you'll hand down.</p>
+  </div>
+  <div class="philosophy-visual reveal">
+    <img src="HarviaM3.jpg" alt="Harvia M3 Wood-Burning Sauna Stove" class="philosophy-img">
+  </div>
+</section>
+
+<div class="divider"><span>The Details</span></div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="features-header reveal">
+    <h2>What Sets Us Apart</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      <h3>Finnish Specification</h3>
+      <p>Built to authentic Finnish sauna standards with proper thermal mass, ventilation flow, and stove-to-room ratios. Real löyly, not marketing copy.</p>
+    </div>
+    <div class="feature-card reveal">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <h3>Veteran Built</h3>
+      <p>USMC veteran-owned. We bring the same discipline, attention to detail, and commitment to quality that the Corps demands — to every joint, every board, every build.</p>
+    </div>
+    <div class="feature-card reveal">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+      <h3>Wood-Fired Heat</h3>
+      <p>We spec wood-burning stoves — Harvia, Kuuma, or equivalent — because nothing replicates the soft, radiant heat and ritual of feeding a real fire.</p>
+      <img src="harvia-logo.png" alt="Harvia" class="partner-logo">
+    </div>
+    <div class="feature-card reveal">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <h3>Backyard Ready</h3>
+      <p>Designed for residential properties throughout the Bay Area. We handle design, build, and delivery — you just need a level spot and a cold plunge nearby.</p>
+    </div>
+    <div class="feature-card reveal">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+      <h3>Select-Grade Lumber</h3>
+      <p>Hand-picked cedar and fir from Northern California suppliers. Every board is inspected — no warps, no knots where they don't belong, no shortcuts on materials.</p>
+    </div>
+    <div class="feature-card reveal">
+      <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <h3>Built to Last</h3>
+      <p>Rockwool insulation. Foil vapor barrier. Stainless steel fasteners. Proper ventilation. Every material chosen for longevity — this sauna outlives the mortgage.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MODELS -->
+<section class="models" id="models">
+  <div class="models-inner">
+    <div class="models-header reveal">
+      <h2>Three Tiers, One Standard</h2>
+      <p>Every model is built to the same Finnish spec. You're choosing size and features, not quality.</p>
+    </div>
+    <div class="models-grid">
+      <div class="model-card reveal">
+        <h3>Scout</h3>
+        <div class="model-size">4' × 6' &bull; 2 Person</div>
+        <ul>
+          <li>Compact footprint for smaller yards</li>
+          <li>Wood-fired stove</li>
+          <li>Single-tier bench</li>
+          <li>Tempered glass window</li>
+          <li>Full insulation package</li>
+        </ul>
+        <div class="model-price">Starting at $8,000<span>50% deposit to begin</span></div>
+      </div>
+      <div class="model-card featured reveal">
+        <div class="model-tag">Most Popular</div>
+        <h3>Basecamp</h3>
+        <div class="model-size">6' × 8' &bull; 4 Person</div>
+        <ul>
+          <li>Our signature build</li>
+          <li>Wood-fired Harvia stove</li>
+          <li>Two-tier bench system</li>
+          <li>Panoramic window option</li>
+          <li>Cedar or fir interior</li>
+          <li>Changing area available</li>
+        </ul>
+        <div class="model-price">Starting at $14,000<span>50% deposit to begin</span></div>
+      </div>
+      <div class="model-card reveal">
+        <h3>Summit</h3>
+        <div class="model-size">8' × 12' &bull; 6–8 Person</div>
+        <ul>
+          <li>Full-size with changing room</li>
+          <li>Premium wood-fired stove</li>
+          <li>Multi-tier bench system</li>
+          <li>Custom window configuration</li>
+          <li>Cedar interior standard</li>
+          <li>Cold plunge integration</li>
+        </ul>
+        <div class="model-price">Starting at $22,000<span>50% deposit to begin</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLUEPRINT -->
+<section class="blueprint" id="blueprint">
+  <div class="blueprint-inner">
+    <div class="blueprint-header reveal">
+      <h2>Inside the Basecamp</h2>
+      <p>Every dimension, every placement, engineered for authentic löyly.</p>
+    </div>
+    <div class="blueprint-diagram reveal">
+      <svg viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:900px;margin:0 auto;display:block;">
+        <!-- Wall fill -->
+        <rect x="200" y="50" width="440" height="330" fill="#1a1714"/>
+        <!-- Heat zone -->
+        <rect x="200" y="50" width="440" height="160" fill="#E8593C" fill-opacity="0.04"/>
+        <!-- Outer walls -->
+        <rect x="200" y="50" width="440" height="330" rx="2" fill="none" stroke="#c9a96e" stroke-width="3"/>
+
+        <!-- Stove -->
+        <rect x="218" y="68" width="55" height="55" rx="4" fill="#3a3530" stroke="#c9a96e" stroke-width="1.5"/>
+        <circle cx="233" cy="83" r="5" fill="#5a5550" fill-opacity="0.5"/>
+        <circle cx="246" cy="79" r="5.5" fill="#5a5550" fill-opacity="0.5"/>
+        <circle cx="258" cy="85" r="5" fill="#5a5550" fill-opacity="0.5"/>
+        <circle cx="245" cy="93" r="4.5" fill="#5a5550" fill-opacity="0.5"/>
+        <circle cx="233" cy="99" r="4" fill="#5a5550" fill-opacity="0.5"/>
+        <circle cx="258" cy="98" r="4.5" fill="#5a5550" fill-opacity="0.5"/>
+        <circle cx="245" cy="95" r="8" fill="#2a2520" stroke="#888" stroke-width="1"/>
+        <circle cx="245" cy="95" r="4" fill="none" stroke="#666" stroke-width="0.5"/>
+        <!-- Heat shields -->
+        <line x1="213" y1="63" x2="213" y2="128" stroke="#E8593C" stroke-width="2" stroke-opacity="0.3"/>
+        <line x1="278" y1="63" x2="278" y2="128" stroke="#E8593C" stroke-width="2" stroke-opacity="0.3"/>
+
+        <!-- Upper bench back wall -->
+        <rect x="300" y="68" width="322" height="60" rx="2" fill="#b5723c" fill-opacity="0.2" stroke="#b5723c" stroke-width="1.2"/>
+        <!-- Upper bench right wall -->
+        <rect x="562" y="128" width="60" height="200" rx="2" fill="#b5723c" fill-opacity="0.2" stroke="#b5723c" stroke-width="1.2"/>
+        <!-- Foot bench back -->
+        <rect x="300" y="132" width="258" height="40" rx="2" fill="#b5723c" fill-opacity="0.1" stroke="#b5723c" stroke-width="0.8" stroke-dasharray="5 3"/>
+        <!-- Foot bench right -->
+        <rect x="500" y="176" width="58" height="152" rx="2" fill="#b5723c" fill-opacity="0.1" stroke="#b5723c" stroke-width="0.8" stroke-dasharray="5 3"/>
+
+        <!-- Door -->
+        <rect x="310" y="374" width="70" height="6" fill="#c9a96e" rx="1"/>
+        <path d="M310 380 Q310 325, 358 318" fill="none" stroke="#c9a96e" stroke-width="0.6" stroke-dasharray="4 3"/>
+
+        <!-- Window -->
+        <rect x="198" y="225" width="6" height="75" rx="1" fill="none" stroke="#378ADD" stroke-width="1.5"/>
+
+        <!-- Supply vent -->
+        <rect x="225" y="48" width="40" height="6" rx="2" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <!-- Exhaust vent -->
+        <rect x="530" y="376" width="40" height="6" rx="2" fill="none" stroke="#E24B4A" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+        <!-- Dimension: 8' width -->
+        <line x1="200" y1="408" x2="640" y2="408" stroke="#a39888" stroke-width="0.7"/>
+        <line x1="200" y1="403" x2="200" y2="413" stroke="#a39888" stroke-width="0.7"/>
+        <line x1="640" y1="403" x2="640" y2="413" stroke="#a39888" stroke-width="0.7"/>
+        <text x="420" y="426" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="12" font-weight="600" letter-spacing="1">8' – 0" (96")</text>
+
+        <!-- Dimension: 6' depth -->
+        <line x1="665" y1="50" x2="665" y2="380" stroke="#a39888" stroke-width="0.7"/>
+        <line x1="660" y1="50" x2="670" y2="50" stroke="#a39888" stroke-width="0.7"/>
+        <line x1="660" y1="380" x2="670" y2="380" stroke="#a39888" stroke-width="0.7"/>
+        <text x="678" y="220" text-anchor="start" fill="#a39888" font-family="system-ui,sans-serif" font-size="12" font-weight="600" letter-spacing="1" transform="rotate(90,678,220)">6' – 0" (72")</text>
+
+        <!-- Callouts: LEFT SIDE -->
+        <!-- Stove -->
+        <circle cx="245" cy="95" r="3" fill="#d4945a"/>
+        <line x1="245" y1="95" x2="60" y2="75" stroke="#d4945a" stroke-width="0.8"/>
+        <text x="55" y="72" text-anchor="end" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Harvia M3</text>
+        <text x="55" y="85" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Wood-burning · sauna stones</text>
+
+        <!-- Chimney -->
+        <line x1="248" y1="90" x2="60" y2="35" stroke="#d4945a" stroke-width="0.8"/>
+        <text x="55" y="32" text-anchor="end" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Chimney</text>
+        <text x="55" y="45" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Through-ceiling exit</text>
+
+        <!-- Heat shields -->
+        <circle cx="213" cy="100" r="2.5" fill="#d4945a"/>
+        <line x1="213" y1="100" x2="60" y2="130" stroke="#d4945a" stroke-width="0.8"/>
+        <text x="55" y="128" text-anchor="end" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Heat shields</text>
+        <text x="55" y="141" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">16" min clearance</text>
+
+        <!-- Supply vent -->
+        <circle cx="245" cy="51" r="2.5" fill="#d4945a"/>
+        <line x1="245" y1="51" x2="60" y2="185" stroke="#d4945a" stroke-width="0.8"/>
+        <text x="55" y="182" text-anchor="end" fill="#1D9E75" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Fresh air supply</text>
+        <text x="55" y="195" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Above stove · always open</text>
+
+        <!-- Window -->
+        <circle cx="201" cy="262" r="2.5" fill="#d4945a"/>
+        <line x1="201" y1="262" x2="60" y2="262" stroke="#d4945a" stroke-width="0.8"/>
+        <text x="55" y="260" text-anchor="end" fill="#378ADD" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Tempered glass</text>
+        <text x="55" y="273" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Window · 8mm</text>
+
+        <!-- Callouts: RIGHT SIDE -->
+        <!-- Upper bench -->
+        <circle cx="461" cy="98" r="2.5" fill="#d4945a"/>
+        <line x1="461" y1="98" x2="780" y2="70" stroke="#d4945a" stroke-width="0.8"/>
+        <text x="790" y="68" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Upper bench</text>
+        <text x="790" y="81" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">L-shape · cedar · 24" deep</text>
+        <text x="790" y="93" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Sitting height: 51"</text>
+
+        <!-- Foot bench -->
+        <circle cx="430" cy="152" r="2.5" fill="#d4945a"/>
+        <line x1="430" y1="152" x2="780" y2="135" stroke="#d4945a" stroke-width="0.8"/>
+        <text x="790" y="133" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Foot bench</text>
+        <text x="790" y="146" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">34" height (above stones)</text>
+        <text x="790" y="158" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Trumpkin specification</text>
+
+        <!-- Side bench -->
+        <circle cx="592" cy="228" r="2.5" fill="#d4945a"/>
+        <line x1="592" y1="228" x2="780" y2="208" stroke="#d4945a" stroke-width="0.8"/>
+        <text x="790" y="206" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Side bench</text>
+        <text x="790" y="219" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Seats 4 comfortably</text>
+
+        <!-- Exhaust -->
+        <circle cx="550" cy="379" r="2.5" fill="#d4945a"/>
+        <line x1="550" y1="379" x2="780" y2="350" stroke="#d4945a" stroke-width="0.8"/>
+        <text x="790" y="348" fill="#E24B4A" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Mechanical exhaust</text>
+        <text x="790" y="361" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Below foot bench · opposite wall</text>
+        <text x="790" y="373" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">25 CFM per bather</text>
+
+        <!-- Door -->
+        <circle cx="345" cy="377" r="2.5" fill="#d4945a"/>
+        <line x1="345" y1="377" x2="345" y2="455" stroke="#d4945a" stroke-width="0.8"/>
+        <text x="345" y="470" text-anchor="middle" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Entry door</text>
+        <text x="345" y="483" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">24"×72" · swings out</text>
+
+        <!-- Interior labels -->
+        <text x="400" y="280" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="10" opacity="0.25">OPEN FLOOR</text>
+
+        <!-- Badges -->
+        <rect x="200" y="510" width="90" height="22" rx="11" fill="none" stroke="#c9a96e" stroke-width="0.6" opacity="0.4"/>
+        <text x="245" y="524" text-anchor="middle" fill="#c9a96e" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" letter-spacing="1" opacity="0.6">2 – 4 PERSON</text>
+        <rect x="560" y="510" width="90" height="22" rx="11" fill="none" stroke="#c9a96e" stroke-width="0.6" opacity="0.4"/>
+        <text x="605" y="524" text-anchor="middle" fill="#c9a96e" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" letter-spacing="1" opacity="0.6">WOOD-FIRED</text>
+
+        <!-- Branding -->
+        <line x1="100" y1="555" x2="800" y2="555" stroke="#c9a96e" stroke-width="0.3" opacity="0.3"/>
+        <text x="450" y="575" text-anchor="middle" fill="#c9a96e" font-family="system-ui,sans-serif" font-size="10" font-weight="600" letter-spacing="3" opacity="0.6">BAY AREA SAUNAS</text>
+        <text x="450" y="591" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="8.5" letter-spacing="1.5" opacity="0.4">BUILT TO FINNISH SPECIFICATION · VACAVILLE, CA</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>The Process</span></div>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <h2 class="reveal">From Conversation to First Steam</h2>
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-num">1</div>
+      <h4>Consult</h4>
+      <p>We discuss your space, preferences, and budget. No pressure, no upsell — just an honest conversation about what makes sense for your property.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">2</div>
+      <h4>Design</h4>
+      <p>You receive a detailed spec sheet, material list, and build timeline. Everything is transparent — you know exactly what you're getting and what it costs.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">3</div>
+      <h4>Build</h4>
+      <p>Your sauna is handcrafted with select-grade lumber and premium components. Every joint is tight, every board is inspected, every detail is intentional.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">4</div>
+      <h4>Deliver</h4>
+      <p>We deliver your completed sauna, set it in place, and walk you through your first fire. You throw the water. We watch the steam rise.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VETERAN -->
+<section class="veteran reveal">
+  <div class="veteran-inner">
+    <div class="veteran-logos">
+      <img src="sdvosb-badge.png" alt="Service-Disabled Veteran-Owned Small Business" class="vet-logo">
+    </div>
+    <div class="veteran-badge">
+      Service-Disabled Veteran Owned
+    </div>
+    <h2>Built by a Marine who believes things should be done right — or not at all.</h2>
+    <p>Bay Area Saunas is a DBA of Kurt's Custom Creations. Every sauna is personally built and inspected. This isn't a franchise. There's no sales team. When you call, you talk to the person who builds your sauna.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2 class="reveal">Let's Build Yours</h2>
+  <p class="reveal">Ready to talk about your build? Reach out — we'll get back to you within 24 hours.</p>
+  <div class="contact-methods reveal">
+    <div class="contact-method">
+      <h4>Email</h4>
+      <a href="mailto:info@bayareasaunas.com">info@bayareasaunas.com</a>
+    </div>
+    <div class="contact-method">
+      <h4>Phone</h4>
+      <a href="tel:+1XXXXXXXXXX">Your Number Here</a>
+    </div>
+    <div class="contact-method">
+      <h4>Serving</h4>
+      <span>The Greater Bay Area &bull; Napa &bull; Solano County</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Bay Area <span>Saunas</span></div>
+  <div class="footer-info">
+    A DBA of Kurt's Custom Creations &bull; Vacaville, CA &bull; SDVOSB
+  </div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // Mobile nav toggle
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
