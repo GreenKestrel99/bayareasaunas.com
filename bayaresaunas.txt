@@ -519,6 +519,24 @@
     margin: 0 auto;
   }
 
+  .veteran-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .vet-logo {
+    height: 80px;
+    width: auto;
+    opacity: 0.85;
+    filter: grayscale(20%);
+    transition: opacity 0.3s;
+  }
+
+  .vet-logo:hover { opacity: 1; }
+
   .veteran-badge {
     display: inline-flex;
     align-items: center;
@@ -711,7 +729,7 @@
   </a>
 </section>
 
-<div class="divider"><span>Est. 2026</span></div>
+<div class="divider"><span>&bull;&bull;&bull;</span></div>
 
 <!-- PHILOSOPHY -->
 <section class="philosophy" id="philosophy">
@@ -848,8 +866,11 @@
 <!-- VETERAN -->
 <section class="veteran reveal">
   <div class="veteran-inner">
+    <div class="veteran-logos">
+      <img src="usmc-logo.png" alt="United States Marine Corps" class="vet-logo">
+      <img src="sdvosb-badge.png" alt="Service-Disabled Veteran-Owned Small Business" class="vet-logo">
+    </div>
     <div class="veteran-badge">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
       Service-Disabled Veteran Owned
     </div>
     <h2>Built by a Marine who believes things should be done right — or not at all.</h2>
