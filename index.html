@@ -362,7 +362,7 @@
 
   .blueprint-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
   }
 
   .blueprint-header h2 {
@@ -379,11 +379,52 @@
     color: var(--smoke);
   }
 
+  .blueprint-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .blueprint-tab {
+    padding: 0.6rem 1.5rem;
+    background: transparent;
+    border: 1px solid rgba(181,114,60,0.2);
+    color: var(--smoke);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .blueprint-tab:hover {
+    border-color: var(--cedar);
+    color: var(--cream);
+  }
+
+  .blueprint-tab.active {
+    background: var(--cedar);
+    border-color: var(--cedar);
+    color: var(--warm-black);
+    font-weight: 600;
+  }
+
   .blueprint-diagram {
     background: var(--warm-black);
     border: 1px solid rgba(181,114,60,0.12);
-    padding: 2rem 1rem;
-    overflow: hidden;
+    padding: 1.5rem 0.5rem;
+    overflow-x: auto;
+  }
+
+  .blueprint-plan {
+    display: none;
+  }
+
+  .blueprint-plan.active {
+    display: block;
   }
 
   /* ============ MODELS ============ */
@@ -501,6 +542,95 @@
     color: var(--smoke);
     display: block;
     margin-top: 0.25rem;
+  }
+
+  /* ============ GALLERY ============ */
+  .gallery {
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .gallery-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .gallery-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .gallery-header p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--smoke);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .gallery-grid .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    aspect-ratio: 4/3;
+    background: var(--stone);
+  }
+
+  .gallery-grid .gallery-item.tall {
+    grid-row: span 2;
+    aspect-ratio: auto;
+  }
+
+  .gallery-grid .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    opacity: 0.9;
+  }
+
+  .gallery-grid .gallery-item:hover img {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  .gallery-item .gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1rem 0.75rem;
+    background: linear-gradient(to top, rgba(15,13,11,0.85) 0%, transparent 100%);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--cream);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .gallery-item:hover .gallery-caption {
+    opacity: 1;
+  }
+
+  .gallery-note {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--smoke);
+    font-style: italic;
   }
 
   /* ============ PROCESS ============ */
@@ -780,6 +910,9 @@
     .features-grid { grid-template-columns: 1fr; }
     .models { padding: 4rem 1.5rem; }
     .models-grid { grid-template-columns: 1fr; }
+    .gallery { padding: 4rem 1.5rem; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-grid .gallery-item.tall { grid-row: span 1; aspect-ratio: 4/3; }
     .process { padding: 4rem 1.5rem; }
     .process-steps { grid-template-columns: 1fr 1fr; }
     .process-steps::before { display: none; }
@@ -799,6 +932,7 @@
     <li><a href="#philosophy">About</a></li>
     <li><a href="#features">Craftsmanship</a></li>
     <li><a href="#models">Models</a></li>
+    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -926,147 +1060,237 @@
   </div>
 </section>
 
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-header reveal">
+    <h2>The Craft</h2>
+    <p>Reference photos of Finnish-spec saunas built to the standards we follow. Your build will be custom — these show the quality and detail you can expect.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item tall reveal">
+      <img src="SaunaLifeG4wHarviaM3.webp" alt="SaunaLife G4 with Harvia M3 Stove">
+      <div class="gallery-caption">Wood-fired Harvia stove</div>
+    </div>
+    <div class="gallery-item reveal">
+      <img src="HarviaM3.jpg" alt="Harvia M3 Wood-Burning Stove">
+      <div class="gallery-caption">Harvia M3 · the heart of every build</div>
+    </div>
+    <div class="gallery-item reveal">
+      <img src="gallery-interior.jpg" alt="Sauna Interior">
+      <div class="gallery-caption">Cedar interior · three-tier benches</div>
+    </div>
+    <div class="gallery-item reveal">
+      <img src="gallery-exterior.jpg" alt="Outdoor Sauna">
+      <div class="gallery-caption">Backyard ready · no permit required</div>
+    </div>
+    <div class="gallery-item reveal">
+      <img src="gallery-benches.jpg" alt="Sauna Bench Detail">
+      <div class="gallery-caption">Finnish-spec bench heights</div>
+    </div>
+  </div>
+  <p class="gallery-note reveal">Photos shown are reference builds. Your sauna will be custom built to your specifications.</p>
+</section>
+
+<div class="divider"><span>&bull;&bull;&bull;</span></div>
+
 <!-- BLUEPRINT -->
 <section class="blueprint" id="blueprint">
   <div class="blueprint-inner">
     <div class="blueprint-header reveal">
-      <h2>Inside the Basecamp</h2>
+      <h2>Floor Plans</h2>
       <p>Every dimension, every placement, engineered for authentic löyly.</p>
     </div>
+    <div class="blueprint-tabs reveal">
+      <button class="blueprint-tab active" onclick="showPlan('scout')">Scout 7×7</button>
+      <button class="blueprint-tab" onclick="showPlan('basecamp')">Basecamp 7×9</button>
+      <button class="blueprint-tab" onclick="showPlan('summit')">Summit 8×12</button>
+    </div>
     <div class="blueprint-diagram reveal">
-      <svg viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:900px;margin:0 auto;display:block;">
-        <!-- Wall fill -->
-        <rect x="200" y="50" width="440" height="330" fill="#1a1714"/>
-        <!-- Heat zone -->
-        <rect x="200" y="50" width="440" height="160" fill="#E8593C" fill-opacity="0.04"/>
-        <!-- Outer walls -->
-        <rect x="200" y="50" width="440" height="330" rx="2" fill="none" stroke="#c9a96e" stroke-width="3"/>
 
-        <!-- Stove -->
-        <rect x="218" y="68" width="55" height="55" rx="4" fill="#3a3530" stroke="#c9a96e" stroke-width="1.5"/>
-        <circle cx="233" cy="83" r="5" fill="#5a5550" fill-opacity="0.5"/>
-        <circle cx="246" cy="79" r="5.5" fill="#5a5550" fill-opacity="0.5"/>
-        <circle cx="258" cy="85" r="5" fill="#5a5550" fill-opacity="0.5"/>
-        <circle cx="245" cy="93" r="4.5" fill="#5a5550" fill-opacity="0.5"/>
-        <circle cx="233" cy="99" r="4" fill="#5a5550" fill-opacity="0.5"/>
-        <circle cx="258" cy="98" r="4.5" fill="#5a5550" fill-opacity="0.5"/>
-        <circle cx="245" cy="95" r="8" fill="#2a2520" stroke="#888" stroke-width="1"/>
-        <circle cx="245" cy="95" r="4" fill="none" stroke="#666" stroke-width="0.5"/>
-        <!-- Heat shields -->
-        <line x1="213" y1="63" x2="213" y2="128" stroke="#E8593C" stroke-width="2" stroke-opacity="0.3"/>
-        <line x1="278" y1="63" x2="278" y2="128" stroke="#E8593C" stroke-width="2" stroke-opacity="0.3"/>
+      <!-- SCOUT 7x7 -->
+      <div class="blueprint-plan active" id="plan-scout">
+        <svg viewBox="0 0 900 580" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;margin:0 auto;display:block;">
+          <rect x="220" y="60" width="385" height="385" fill="#1a1714"/>
+          <rect x="220" y="60" width="385" height="190" fill="#E8593C" fill-opacity="0.04"/>
+          <rect x="220" y="60" width="385" height="385" rx="2" fill="none" stroke="#c9a96e" stroke-width="3"/>
+          <!-- Stove -->
+          <rect x="238" y="78" width="50" height="50" rx="4" fill="#3a3530" stroke="#c9a96e" stroke-width="1.5"/>
+          <circle cx="263" cy="103" r="7" fill="#2a2520" stroke="#888" stroke-width="1"/>
+          <line x1="233" y1="73" x2="233" y2="133" stroke="#E8593C" stroke-width="2" stroke-opacity="0.3"/>
+          <line x1="293" y1="73" x2="293" y2="133" stroke="#E8593C" stroke-width="2" stroke-opacity="0.3"/>
+          <!-- Upper bench back wall -->
+          <rect x="310" y="78" width="277" height="55" rx="2" fill="#b5723c" fill-opacity="0.2" stroke="#b5723c" stroke-width="1.2"/>
+          <!-- Upper bench right wall -->
+          <rect x="550" y="133" width="37" height="200" rx="2" fill="#b5723c" fill-opacity="0.2" stroke="#b5723c" stroke-width="1.2"/>
+          <!-- Foot bench -->
+          <rect x="310" y="137" width="236" height="35" rx="2" fill="#b5723c" fill-opacity="0.1" stroke="#b5723c" stroke-width="0.8" stroke-dasharray="5 3"/>
+          <!-- Door -->
+          <rect x="330" y="439" width="65" height="6" fill="#c9a96e" rx="1"/>
+          <path d="M330 445 Q330 395, 373 390" fill="none" stroke="#c9a96e" stroke-width="0.6" stroke-dasharray="4 3"/>
+          <!-- Window -->
+          <rect x="218" y="260" width="6" height="65" rx="1" fill="none" stroke="#378ADD" stroke-width="1.5"/>
+          <!-- Vents -->
+          <rect x="245" y="58" width="35" height="5" rx="2" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <rect x="500" y="441" width="35" height="5" rx="2" fill="none" stroke="#E24B4A" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <!-- Dimensions -->
+          <line x1="220" y1="470" x2="605" y2="470" stroke="#a39888" stroke-width="0.7"/>
+          <line x1="220" y1="465" x2="220" y2="475" stroke="#a39888" stroke-width="0.7"/>
+          <line x1="605" y1="465" x2="605" y2="475" stroke="#a39888" stroke-width="0.7"/>
+          <text x="412" y="488" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="12" font-weight="600" letter-spacing="1">7' – 0" (84")</text>
+          <line x1="630" y1="60" x2="630" y2="445" stroke="#a39888" stroke-width="0.7"/>
+          <line x1="625" y1="60" x2="635" y2="60" stroke="#a39888" stroke-width="0.7"/>
+          <line x1="625" y1="445" x2="635" y2="445" stroke="#a39888" stroke-width="0.7"/>
+          <text x="643" y="256" text-anchor="start" fill="#a39888" font-family="system-ui,sans-serif" font-size="12" font-weight="600" letter-spacing="1" transform="rotate(90,643,256)">7' – 0" (84")</text>
+          <!-- Callouts -->
+          <circle cx="263" cy="103" r="3" fill="#d4945a"/>
+          <line x1="263" y1="103" x2="80" y2="85" stroke="#d4945a" stroke-width="0.8"/>
+          <text x="75" y="82" text-anchor="end" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Harvia M3</text>
+          <text x="75" y="94" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9">Wood-burning stove</text>
+          <circle cx="450" cy="105" r="2.5" fill="#d4945a"/>
+          <line x1="450" y1="105" x2="750" y2="80" stroke="#d4945a" stroke-width="0.8"/>
+          <text x="758" y="78" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Upper bench</text>
+          <text x="758" y="90" fill="#a39888" font-family="system-ui,sans-serif" font-size="9">L-shape · 24" deep · 51" high</text>
+          <circle cx="420" cy="155" r="2.5" fill="#d4945a"/>
+          <line x1="420" y1="155" x2="750" y2="140" stroke="#d4945a" stroke-width="0.8"/>
+          <text x="758" y="138" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Foot bench</text>
+          <text x="758" y="150" fill="#a39888" font-family="system-ui,sans-serif" font-size="9">34" high · above stones</text>
+          <text x="400" y="310" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="10" opacity="0.25">OPEN FLOOR</text>
+          <!-- Badges -->
+          <rect x="220" y="510" width="100" height="22" rx="11" fill="none" stroke="#c9a96e" stroke-width="0.6" opacity="0.4"/>
+          <text x="270" y="524" text-anchor="middle" fill="#c9a96e" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" letter-spacing="1" opacity="0.6">2 – 3 PERSON</text>
+          <rect x="490" y="510" width="90" height="22" rx="11" fill="none" stroke="#c9a96e" stroke-width="0.6" opacity="0.4"/>
+          <text x="535" y="524" text-anchor="middle" fill="#c9a96e" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" letter-spacing="1" opacity="0.6">49 SQ FT</text>
+          <text x="412" y="555" text-anchor="middle" fill="#c9a96e" font-family="system-ui,sans-serif" font-size="10" font-weight="600" letter-spacing="3" opacity="0.6">SCOUT · $9,000</text>
+        </svg>
+      </div>
 
-        <!-- Upper bench back wall -->
-        <rect x="300" y="68" width="322" height="60" rx="2" fill="#b5723c" fill-opacity="0.2" stroke="#b5723c" stroke-width="1.2"/>
-        <!-- Upper bench right wall -->
-        <rect x="562" y="128" width="60" height="200" rx="2" fill="#b5723c" fill-opacity="0.2" stroke="#b5723c" stroke-width="1.2"/>
-        <!-- Foot bench back -->
-        <rect x="300" y="132" width="258" height="40" rx="2" fill="#b5723c" fill-opacity="0.1" stroke="#b5723c" stroke-width="0.8" stroke-dasharray="5 3"/>
-        <!-- Foot bench right -->
-        <rect x="500" y="176" width="58" height="152" rx="2" fill="#b5723c" fill-opacity="0.1" stroke="#b5723c" stroke-width="0.8" stroke-dasharray="5 3"/>
+      <!-- BASECAMP 7x9 -->
+      <div class="blueprint-plan" id="plan-basecamp">
+        <svg viewBox="0 0 900 580" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;margin:0 auto;display:block;">
+          <rect x="200" y="60" width="495" height="385" fill="#1a1714"/>
+          <rect x="200" y="60" width="495" height="190" fill="#E8593C" fill-opacity="0.04"/>
+          <rect x="200" y="60" width="495" height="385" rx="2" fill="none" stroke="#c9a96e" stroke-width="3"/>
+          <!-- Stove -->
+          <rect x="218" y="78" width="55" height="55" rx="4" fill="#3a3530" stroke="#c9a96e" stroke-width="1.5"/>
+          <circle cx="245" cy="105" r="8" fill="#2a2520" stroke="#888" stroke-width="1"/>
+          <line x1="213" y1="73" x2="213" y2="138" stroke="#E8593C" stroke-width="2" stroke-opacity="0.3"/>
+          <line x1="278" y1="73" x2="278" y2="138" stroke="#E8593C" stroke-width="2" stroke-opacity="0.3"/>
+          <!-- Vestibule divider -->
+          <line x1="560" y1="60" x2="560" y2="445" stroke="#c9a96e" stroke-width="1" stroke-dasharray="8 4" opacity="0.4"/>
+          <text x="627" y="250" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="9" opacity="0.4" transform="rotate(90,627,250)">VESTIBULE</text>
+          <!-- Upper bench back wall -->
+          <rect x="300" y="78" width="242" height="55" rx="2" fill="#b5723c" fill-opacity="0.2" stroke="#b5723c" stroke-width="1.2"/>
+          <!-- Upper bench right wall -->
+          <rect x="487" y="133" width="55" height="200" rx="2" fill="#b5723c" fill-opacity="0.2" stroke="#b5723c" stroke-width="1.2"/>
+          <!-- Foot bench -->
+          <rect x="300" y="137" width="183" height="35" rx="2" fill="#b5723c" fill-opacity="0.1" stroke="#b5723c" stroke-width="0.8" stroke-dasharray="5 3"/>
+          <rect x="430" y="176" width="55" height="157" rx="2" fill="#b5723c" fill-opacity="0.1" stroke="#b5723c" stroke-width="0.8" stroke-dasharray="5 3"/>
+          <!-- Door -->
+          <rect x="580" y="439" width="65" height="6" fill="#c9a96e" rx="1"/>
+          <path d="M580 445 Q580 395, 623 390" fill="none" stroke="#c9a96e" stroke-width="0.6" stroke-dasharray="4 3"/>
+          <!-- Window -->
+          <rect x="198" y="260" width="6" height="70" rx="1" fill="none" stroke="#378ADD" stroke-width="1.5"/>
+          <!-- Vents -->
+          <rect x="225" y="58" width="40" height="5" rx="2" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <rect x="460" y="441" width="40" height="5" rx="2" fill="none" stroke="#E24B4A" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <!-- Dimensions -->
+          <line x1="200" y1="470" x2="695" y2="470" stroke="#a39888" stroke-width="0.7"/>
+          <line x1="200" y1="465" x2="200" y2="475" stroke="#a39888" stroke-width="0.7"/>
+          <line x1="695" y1="465" x2="695" y2="475" stroke="#a39888" stroke-width="0.7"/>
+          <text x="447" y="488" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="12" font-weight="600" letter-spacing="1">9' – 0" (108")</text>
+          <line x1="720" y1="60" x2="720" y2="445" stroke="#a39888" stroke-width="0.7"/>
+          <line x1="715" y1="60" x2="725" y2="60" stroke="#a39888" stroke-width="0.7"/>
+          <line x1="715" y1="445" x2="725" y2="445" stroke="#a39888" stroke-width="0.7"/>
+          <text x="733" y="256" text-anchor="start" fill="#a39888" font-family="system-ui,sans-serif" font-size="12" font-weight="600" letter-spacing="1" transform="rotate(90,733,256)">7' – 0" (84")</text>
+          <!-- Callouts -->
+          <circle cx="245" cy="105" r="3" fill="#d4945a"/>
+          <line x1="245" y1="105" x2="60" y2="85" stroke="#d4945a" stroke-width="0.8"/>
+          <text x="55" y="82" text-anchor="end" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Harvia M3</text>
+          <text x="55" y="94" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9">Wood-burning · sauna stones</text>
+          <circle cx="420" cy="105" r="2.5" fill="#d4945a"/>
+          <line x1="420" y1="105" x2="60" y2="150" stroke="#d4945a" stroke-width="0.8"/>
+          <text x="55" y="148" text-anchor="end" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Upper bench</text>
+          <text x="55" y="160" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9">L-shape · 24" deep · 51" high</text>
+          <circle cx="390" cy="155" r="2.5" fill="#d4945a"/>
+          <line x1="390" y1="155" x2="60" y2="210" stroke="#d4945a" stroke-width="0.8"/>
+          <text x="55" y="208" text-anchor="end" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Foot bench</text>
+          <text x="55" y="220" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9">34" high · above stones</text>
+          <text x="370" y="320" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="10" opacity="0.25">OPEN FLOOR</text>
+          <!-- Badges -->
+          <rect x="200" y="510" width="100" height="22" rx="11" fill="none" stroke="#c9a96e" stroke-width="0.6" opacity="0.4"/>
+          <text x="250" y="524" text-anchor="middle" fill="#c9a96e" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" letter-spacing="1" opacity="0.6">3 – 4 PERSON</text>
+          <rect x="540" y="510" width="90" height="22" rx="11" fill="none" stroke="#c9a96e" stroke-width="0.6" opacity="0.4"/>
+          <text x="585" y="524" text-anchor="middle" fill="#c9a96e" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" letter-spacing="1" opacity="0.6">63 SQ FT</text>
+          <text x="447" y="555" text-anchor="middle" fill="#c9a96e" font-family="system-ui,sans-serif" font-size="10" font-weight="600" letter-spacing="3" opacity="0.6">BASECAMP · $14,000</text>
+        </svg>
+      </div>
 
-        <!-- Door -->
-        <rect x="310" y="374" width="70" height="6" fill="#c9a96e" rx="1"/>
-        <path d="M310 380 Q310 325, 358 318" fill="none" stroke="#c9a96e" stroke-width="0.6" stroke-dasharray="4 3"/>
+      <!-- SUMMIT 8x12 -->
+      <div class="blueprint-plan" id="plan-summit">
+        <svg viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;margin:0 auto;display:block;">
+          <rect x="130" y="50" width="660" height="340" fill="#1a1714"/>
+          <rect x="130" y="50" width="660" height="170" fill="#E8593C" fill-opacity="0.04"/>
+          <rect x="130" y="50" width="660" height="340" rx="2" fill="none" stroke="#c9a96e" stroke-width="3"/>
+          <!-- Stove -->
+          <rect x="148" y="68" width="60" height="60" rx="4" fill="#3a3530" stroke="#c9a96e" stroke-width="1.5"/>
+          <circle cx="178" cy="98" r="9" fill="#2a2520" stroke="#888" stroke-width="1"/>
+          <line x1="143" y1="63" x2="143" y2="133" stroke="#E8593C" stroke-width="2" stroke-opacity="0.3"/>
+          <line x1="213" y1="63" x2="213" y2="133" stroke="#E8593C" stroke-width="2" stroke-opacity="0.3"/>
+          <!-- Changing room divider -->
+          <line x1="530" y1="50" x2="530" y2="390" stroke="#c9a96e" stroke-width="1.5" stroke-dasharray="8 4" opacity="0.5"/>
+          <text x="625" y="200" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="10" opacity="0.4" transform="rotate(90,625,200)">CHANGING ROOM</text>
+          <!-- Changing room bench -->
+          <rect x="545" y="68" width="55" height="100" rx="2" fill="#b5723c" fill-opacity="0.1" stroke="#b5723c" stroke-width="0.8"/>
+          <text x="572" y="118" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="7" opacity="0.5">SEAT</text>
+          <!-- Upper bench back wall -->
+          <rect x="240" y="68" width="272" height="55" rx="2" fill="#b5723c" fill-opacity="0.2" stroke="#b5723c" stroke-width="1.2"/>
+          <!-- Upper bench right wall -->
+          <rect x="457" y="123" width="55" height="200" rx="2" fill="#b5723c" fill-opacity="0.2" stroke="#b5723c" stroke-width="1.2"/>
+          <!-- Foot bench -->
+          <rect x="240" y="127" width="213" height="35" rx="2" fill="#b5723c" fill-opacity="0.1" stroke="#b5723c" stroke-width="0.8" stroke-dasharray="5 3"/>
+          <rect x="400" y="166" width="55" height="157" rx="2" fill="#b5723c" fill-opacity="0.1" stroke="#b5723c" stroke-width="0.8" stroke-dasharray="5 3"/>
+          <!-- Internal door -->
+          <rect x="535" y="300" width="50" height="5" fill="#c9a96e" rx="1" opacity="0.6"/>
+          <!-- Entry door -->
+          <rect x="650" y="384" width="70" height="6" fill="#c9a96e" rx="1"/>
+          <path d="M650 390 Q650 340, 693 335" fill="none" stroke="#c9a96e" stroke-width="0.6" stroke-dasharray="4 3"/>
+          <!-- Window -->
+          <rect x="128" y="220" width="6" height="80" rx="1" fill="none" stroke="#378ADD" stroke-width="1.5"/>
+          <!-- Vents -->
+          <rect x="155" y="48" width="45" height="5" rx="2" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <rect x="420" y="386" width="45" height="5" rx="2" fill="none" stroke="#E24B4A" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <!-- Dimensions -->
+          <line x1="130" y1="415" x2="790" y2="415" stroke="#a39888" stroke-width="0.7"/>
+          <line x1="130" y1="410" x2="130" y2="420" stroke="#a39888" stroke-width="0.7"/>
+          <line x1="790" y1="410" x2="790" y2="420" stroke="#a39888" stroke-width="0.7"/>
+          <text x="460" y="433" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="12" font-weight="600" letter-spacing="1">12' – 0" (144")</text>
+          <line x1="815" y1="50" x2="815" y2="390" stroke="#a39888" stroke-width="0.7"/>
+          <line x1="810" y1="50" x2="820" y2="50" stroke="#a39888" stroke-width="0.7"/>
+          <line x1="810" y1="390" x2="820" y2="390" stroke="#a39888" stroke-width="0.7"/>
+          <text x="828" y="224" text-anchor="start" fill="#a39888" font-family="system-ui,sans-serif" font-size="12" font-weight="600" letter-spacing="1" transform="rotate(90,828,224)">8' – 0" (96")</text>
+          <!-- Callouts -->
+          <circle cx="178" cy="98" r="3" fill="#d4945a"/>
+          <line x1="178" y1="98" x2="40" y2="78" stroke="#d4945a" stroke-width="0.8"/>
+          <text x="35" y="75" text-anchor="end" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Harvia M3</text>
+          <text x="35" y="87" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9">Wood-burning stove</text>
+          <circle cx="376" cy="95" r="2.5" fill="#d4945a"/>
+          <line x1="376" y1="95" x2="40" y2="140" stroke="#d4945a" stroke-width="0.8"/>
+          <text x="35" y="138" text-anchor="end" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Upper bench</text>
+          <text x="35" y="150" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9">L-shape · 24" deep · 51" high</text>
+          <circle cx="350" cy="145" r="2.5" fill="#d4945a"/>
+          <line x1="350" y1="145" x2="40" y2="195" stroke="#d4945a" stroke-width="0.8"/>
+          <text x="35" y="193" text-anchor="end" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Foot bench</text>
+          <text x="35" y="205" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9">34" high · above stones</text>
+          <text x="320" y="280" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="10" opacity="0.25">OPEN FLOOR</text>
+          <!-- Badges -->
+          <rect x="130" y="460" width="100" height="22" rx="11" fill="none" stroke="#c9a96e" stroke-width="0.6" opacity="0.4"/>
+          <text x="180" y="474" text-anchor="middle" fill="#c9a96e" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" letter-spacing="1" opacity="0.6">4 – 6 PERSON</text>
+          <rect x="600" y="460" width="90" height="22" rx="11" fill="none" stroke="#c9a96e" stroke-width="0.6" opacity="0.4"/>
+          <text x="645" y="474" text-anchor="middle" fill="#c9a96e" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" letter-spacing="1" opacity="0.6">96 SQ FT</text>
+          <text x="460" y="505" text-anchor="middle" fill="#c9a96e" font-family="system-ui,sans-serif" font-size="10" font-weight="600" letter-spacing="3" opacity="0.6">SUMMIT · $18,000</text>
+        </svg>
+      </div>
 
-        <!-- Window -->
-        <rect x="198" y="225" width="6" height="75" rx="1" fill="none" stroke="#378ADD" stroke-width="1.5"/>
-
-        <!-- Supply vent -->
-        <rect x="225" y="48" width="40" height="6" rx="2" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <!-- Exhaust vent -->
-        <rect x="530" y="376" width="40" height="6" rx="2" fill="none" stroke="#E24B4A" stroke-width="1.5" stroke-dasharray="4 3"/>
-
-        <!-- Dimension: 8' width -->
-        <line x1="200" y1="408" x2="640" y2="408" stroke="#a39888" stroke-width="0.7"/>
-        <line x1="200" y1="403" x2="200" y2="413" stroke="#a39888" stroke-width="0.7"/>
-        <line x1="640" y1="403" x2="640" y2="413" stroke="#a39888" stroke-width="0.7"/>
-        <text x="420" y="426" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="12" font-weight="600" letter-spacing="1">9' – 0" (108")</text>
-
-        <!-- Dimension: 7' depth -->
-        <line x1="665" y1="50" x2="665" y2="380" stroke="#a39888" stroke-width="0.7"/>
-        <line x1="660" y1="50" x2="670" y2="50" stroke="#a39888" stroke-width="0.7"/>
-        <line x1="660" y1="380" x2="670" y2="380" stroke="#a39888" stroke-width="0.7"/>
-        <text x="678" y="220" text-anchor="start" fill="#a39888" font-family="system-ui,sans-serif" font-size="12" font-weight="600" letter-spacing="1" transform="rotate(90,678,220)">7' – 0" (84")</text>
-
-        <!-- Callouts: LEFT SIDE -->
-        <!-- Stove -->
-        <circle cx="245" cy="95" r="3" fill="#d4945a"/>
-        <line x1="245" y1="95" x2="60" y2="75" stroke="#d4945a" stroke-width="0.8"/>
-        <text x="55" y="72" text-anchor="end" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Harvia M3</text>
-        <text x="55" y="85" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Wood-burning · sauna stones</text>
-
-        <!-- Chimney -->
-        <line x1="248" y1="90" x2="60" y2="35" stroke="#d4945a" stroke-width="0.8"/>
-        <text x="55" y="32" text-anchor="end" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Chimney</text>
-        <text x="55" y="45" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Through-ceiling exit</text>
-
-        <!-- Heat shields -->
-        <circle cx="213" cy="100" r="2.5" fill="#d4945a"/>
-        <line x1="213" y1="100" x2="60" y2="130" stroke="#d4945a" stroke-width="0.8"/>
-        <text x="55" y="128" text-anchor="end" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Heat shields</text>
-        <text x="55" y="141" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">16" min clearance</text>
-
-        <!-- Supply vent -->
-        <circle cx="245" cy="51" r="2.5" fill="#d4945a"/>
-        <line x1="245" y1="51" x2="60" y2="185" stroke="#d4945a" stroke-width="0.8"/>
-        <text x="55" y="182" text-anchor="end" fill="#1D9E75" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Fresh air supply</text>
-        <text x="55" y="195" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Above stove · always open</text>
-
-        <!-- Window -->
-        <circle cx="201" cy="262" r="2.5" fill="#d4945a"/>
-        <line x1="201" y1="262" x2="60" y2="262" stroke="#d4945a" stroke-width="0.8"/>
-        <text x="55" y="260" text-anchor="end" fill="#378ADD" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Tempered glass</text>
-        <text x="55" y="273" text-anchor="end" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Window · 8mm</text>
-
-        <!-- Callouts: RIGHT SIDE -->
-        <!-- Upper bench -->
-        <circle cx="461" cy="98" r="2.5" fill="#d4945a"/>
-        <line x1="461" y1="98" x2="780" y2="70" stroke="#d4945a" stroke-width="0.8"/>
-        <text x="790" y="68" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Upper bench</text>
-        <text x="790" y="81" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">L-shape · cedar · 24" deep</text>
-        <text x="790" y="93" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Sitting height: 51"</text>
-
-        <!-- Foot bench -->
-        <circle cx="430" cy="152" r="2.5" fill="#d4945a"/>
-        <line x1="430" y1="152" x2="780" y2="135" stroke="#d4945a" stroke-width="0.8"/>
-        <text x="790" y="133" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Foot bench</text>
-        <text x="790" y="146" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">34" height (above stones)</text>
-        <text x="790" y="158" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Trumpkin specification</text>
-
-        <!-- Side bench -->
-        <circle cx="592" cy="228" r="2.5" fill="#d4945a"/>
-        <line x1="592" y1="228" x2="780" y2="208" stroke="#d4945a" stroke-width="0.8"/>
-        <text x="790" y="206" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Side bench</text>
-        <text x="790" y="219" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Seats 4 comfortably</text>
-
-        <!-- Exhaust -->
-        <circle cx="550" cy="379" r="2.5" fill="#d4945a"/>
-        <line x1="550" y1="379" x2="780" y2="350" stroke="#d4945a" stroke-width="0.8"/>
-        <text x="790" y="348" fill="#E24B4A" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Mechanical exhaust</text>
-        <text x="790" y="361" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">Below foot bench · opposite wall</text>
-        <text x="790" y="373" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">25 CFM per bather</text>
-
-        <!-- Door -->
-        <circle cx="345" cy="377" r="2.5" fill="#d4945a"/>
-        <line x1="345" y1="377" x2="345" y2="455" stroke="#d4945a" stroke-width="0.8"/>
-        <text x="345" y="470" text-anchor="middle" fill="#f0ebe3" font-family="system-ui,sans-serif" font-size="11.5" font-weight="600">Entry door</text>
-        <text x="345" y="483" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="9.5">24"×72" · swings out</text>
-
-        <!-- Interior labels -->
-        <text x="400" y="280" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="10" opacity="0.25">OPEN FLOOR</text>
-
-        <!-- Badges -->
-        <rect x="200" y="510" width="90" height="22" rx="11" fill="none" stroke="#c9a96e" stroke-width="0.6" opacity="0.4"/>
-        <text x="245" y="524" text-anchor="middle" fill="#c9a96e" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" letter-spacing="1" opacity="0.6">2 – 4 PERSON</text>
-        <rect x="560" y="510" width="90" height="22" rx="11" fill="none" stroke="#c9a96e" stroke-width="0.6" opacity="0.4"/>
-        <text x="605" y="524" text-anchor="middle" fill="#c9a96e" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" letter-spacing="1" opacity="0.6">WOOD-FIRED</text>
-
-        <!-- Branding -->
-        <line x1="100" y1="555" x2="800" y2="555" stroke="#c9a96e" stroke-width="0.3" opacity="0.3"/>
-        <text x="450" y="575" text-anchor="middle" fill="#c9a96e" font-family="system-ui,sans-serif" font-size="10" font-weight="600" letter-spacing="3" opacity="0.6">BAY AREA SAUNAS</text>
-        <text x="450" y="591" text-anchor="middle" fill="#a39888" font-family="system-ui,sans-serif" font-size="8.5" letter-spacing="1.5" opacity="0.4">BUILT TO FINNISH SPECIFICATION · VACAVILLE, CA</text>
-      </svg>
     </div>
   </div>
 </section>
@@ -1169,6 +1393,14 @@
     });
   }, { threshold: 0.15 });
   reveals.forEach(el => observer.observe(el));
+
+  // Blueprint tab switching
+  function showPlan(model) {
+    document.querySelectorAll('.blueprint-plan').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.blueprint-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('plan-' + model).classList.add('active');
+    event.target.classList.add('active');
+  }
 </script>
 
 </body>
